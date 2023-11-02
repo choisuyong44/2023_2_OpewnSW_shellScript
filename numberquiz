@@ -1,0 +1,37 @@
+#! /bin/bash
+
+#01 game에 대한 설명
+echo "Up & Down Game!"
+echo -n "Random number range(max : 32768) : "
+read number_range
+echo "Number Range : 1 - $number_range"
+
+#02 변수 설정
+# 1~ number_range까지 중에서 rand_num 설정
+rand_num=$(($RANDOM%$(($number_range+1))))
+count=0
+
+#03 for문을 돌면서 Up & Down
+for i in $(seq 100);do
+
+  # 입력 값 받기
+  echo -n "Enter the number : "
+  read input
+
+  # 입력 횟수 카운트
+  count=$(($count+1))
+
+  if [ $input -eq $rand_num ];then
+    echo "Congratuation! Answer is $rand_num"
+    break
+
+  elif [ $input -gt $rand_num ];then
+    echo "answer is less than $input"
+
+  elif [ $input -lt $rand_num ];then
+    echo "answer is greater than $input"
+  fi
+
+done
+
+echo "Count : $count"
